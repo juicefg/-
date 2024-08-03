@@ -20,6 +20,12 @@ const users = {
     introduction: 'I am an editor',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
     name: 'Normal Editor'
+  },
+  'syameimaru': {
+    roles: ['freshman'],
+    introduction: 'I am a freshman',
+    avatar: 'https://img0.baidu.com/it/u=4022704464,1385042355&fm=253&fmt=auto&app=138&f=JPEG?w=600&h=500',
+    name: 'New man'
   }
 }
 

@@ -1,13 +1,17 @@
 import router from './router'
 import store from './store'
+// 弹出提示组件
 import { Message } from 'element-ui'
+// 进度条组件
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
+// 从cookie中获取token
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
+// 无需登录的白名单
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {

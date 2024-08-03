@@ -130,6 +130,29 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
+    path: '/newTable',
+    component: Layout,
+    redirect: '/newTable/table',
+    alwaysShow: true, // will always show the root menu
+    name: 'newTable',
+    meta: {
+      title: 'newTable',
+      icon: 'lock',
+      roles: ['freshman'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'table',
+        component: () => import('@/views/newTable/index'),
+        name: 'newTable',
+        meta: {
+          title: 'New Table',
+          roles: ['freshman']
+        }
+      }
+    ]
+  },
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',

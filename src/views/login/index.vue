@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">{{ name }} Form</h3>
       </div>
 
       <el-form-item prop="username">
@@ -45,7 +45,11 @@
         </el-form-item>
       </el-tooltip>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button type="text" style="margin: 10px 10px 10px 10px;" @click="name = (name === 'Login' ? 'Register' : 'Login')">
+        {{ name === 'Login' ? 'Register' : 'Login' }}
+      </el-button>
+
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="submitForm">{{ name }}</el-button>
 
       <div style="position:relative">
         <div class="tips">
@@ -78,7 +82,6 @@ import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
 
 export default {
-  name: 'Login',
   components: { SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -96,6 +99,7 @@ export default {
       }
     }
     return {
+      name: 'Login',
       loginForm: {
         username: 'admin',
         password: '111111'
@@ -152,11 +156,12 @@ export default {
         this.$refs.password.focus()
       })
     },
-    handleLogin() {
+    submitForm() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
+          const path = this.name === 'Login' ? 'login' : 'register'
+          this.$store.dispatch('user/' + path, this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false

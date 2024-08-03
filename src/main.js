@@ -28,7 +28,7 @@ import * as filters from './filters' // global filters
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
  */
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
   const { mockXHR } = require('../mock')
   mockXHR()
 }
@@ -44,6 +44,7 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 new Vue({
   el: '#app',
